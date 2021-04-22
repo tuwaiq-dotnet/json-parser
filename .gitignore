@@ -1,0 +1,9 @@
+# ignore .gitignore file
+#.gitignore
+
+# ignore .NET generated folder and files
+bin/
+obj/
+
+# ignore VS Code folder and files
+.vs/
