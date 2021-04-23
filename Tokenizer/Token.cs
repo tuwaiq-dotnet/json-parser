@@ -53,7 +53,8 @@ namespace JSONParser
     }
 
 <<<<<<< HEAD
-    public enum TokenType {
+    public enum TokenType
+    {
 =======
     public enum TokenType
     {
@@ -64,19 +65,11 @@ namespace JSONParser
         ClosingCurlyBracket,
         Comma,
         Colon,
-<<<<<<< HEAD
-        WhiteSpace,
-=======
         Whitespace,
->>>>>>> number-handler
         String,
         Number,
         True,
         False,
         Null,
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> number-handler
