@@ -13,8 +13,12 @@
 
 namespace JSONParser
 {
-    public class JSONString : JSONValue
+    public class JArray : Value
     {
+        public Value[] x;
 
+        public JArray(Token token, Tokenizer tokenizer){
+            
+        }
     }
 }

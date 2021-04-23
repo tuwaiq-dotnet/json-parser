@@ -13,19 +13,22 @@ using System.Collections.Generic;
 
 namespace JSONParser
 {
-    public class JSONObject : JSONValue
+    public class JObject : Value
     {
-        private List<JSONElement> elements;
+        private List<Element> elements;
+        public JObject(Token token, Tokenizer tokenizer)
+        {
 
-        public override JSONObject getObject() { return this; }
-        public JSONElement getElement(int index) { return this.elements[index]; }
+        }
+        public override JObject getObject() { return this; }
+        public Element getElement(int index) { return this.elements[index]; }
         public override bool IsObject() { return true; }
         // public static bool isObject(Token t){return false;}
         public override string ToString()
         {
             string s = "";
-            foreach(var element in elements)
-                s+=element;
+            foreach (var element in elements)
+                s += element;
             return s;
         }
     }

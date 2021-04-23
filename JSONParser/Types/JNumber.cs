@@ -13,8 +13,11 @@
 
 namespace JSONParser
 {
-    public class JSONNumber : JSONValue
+    public class JNumber : Value
     {
+        public JNumber(Token token, Tokenizer tokenizer)
+        {
 
+        }
     }
 }

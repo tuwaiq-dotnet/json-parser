@@ -13,9 +13,11 @@
 
 namespace JSONParser
 {
-    public class JSONArray : JSONValue
+    public class JNull : Value
     {
-        public JSONValue[] x;
+        public JNull(Token token, Tokenizer tokenizer)
+        {
 
+        }
     }
 }
