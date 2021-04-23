@@ -63,6 +63,8 @@ namespace JSONParser
 
         public Input(string input)
         {
+            if (input.Length == 0) throw new Exception("empty input is not allowed");
+
             this.input = input;
             this.length = input.Length;
             this.position = -1;

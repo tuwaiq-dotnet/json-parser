@@ -17,10 +17,10 @@ namespace JSONParser
         // Driver method
         static void Main(string[] args)
         {
-            Utilities.run();
+            // Utilities.run();
             try
             {
-                Input input = new Input("\"hi this is args string\" 23 32 -20 .7 1.0e-5 \"here's another\" 153 -1251651651 \"ANOTHER ONE YO\"");
+                Input input = new Input("\r");
                 Tokenizer t = new Tokenizer(input, new Tokenizable[]
                 {
                     new StringHandler(),
@@ -39,7 +39,7 @@ namespace JSONParser
                 if (!input.isConsumed())
                 {
                     tokens = null;
-                    throw new Exception($"Unexpected token encountered at Ln {input.LineNumber} Col {input.Position}");
+                    throw new Exception($"Unexpected token encountered at Ln {input.LineNumber} Col {input.Position + 1}");
                 }
 
                 Utilities.printTokens(tokens);

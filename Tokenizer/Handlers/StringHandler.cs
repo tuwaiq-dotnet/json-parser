@@ -32,7 +32,7 @@ namespace JSONParser
                     return new Token(input.Position, input.LineNumber, TokenType.String, val);
             }
 
-            throw new System.Exception($"EOF reached without finding a closing '\"' at Ln {ln} Col {initPos}");
+            throw new System.Exception($"EOF reached without finding a closing '\"' at Ln {ln} Col {initPos + 1}");
         }
     }
 }
