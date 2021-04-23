@@ -1,5 +1,3 @@
-
-
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -11,8 +9,9 @@
  *  Ibrahim Alobaysi
  */
 
-namespace JSONParser{
-    public class JSONParser{
+namespace JSONParser.Handlers {
+    public class ObjectHandler
+    {
         
     }
 }
