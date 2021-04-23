@@ -13,6 +13,7 @@ using System;
 
 namespace JSONParser
 {
+    public delegate bool InputCondition(Input input);
     public class Input
     {
         private readonly string input;
@@ -58,6 +59,14 @@ namespace JSONParser
         public char peek(int numOfSteps = 0)
         {
             return hasMore() ? this.input[this.Position + numOfSteps + 1] : '\0';
+        }
+
+        public string loop(InputCondition condition)
+        {
+            string buffer = "";
+            while (this.hasMore() && condition(this))
+                buffer += this.step().Character;
+            return buffer;
         }
     }
 }
