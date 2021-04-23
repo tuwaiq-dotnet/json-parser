@@ -24,30 +24,30 @@ namespace JSONParser
         public override Token tokenize(Input input)
         {
             int initPos = input.Position;
-            String val = input.step() + "";
-
+            int ln = input.LineNumber;
+            char val = input.step().Character;
             switch (val)
             {
-                case ",":
-                    return new Token(input.Position, input.LineNumber, TokenType.Comma, val);
-                    break;
-                case ":":
-                    return new Token(input.Position, input.LineNumber, TokenType.Colon, val);
-                    break;
-                case "{":
-                    return new Token(input.Position, input.LineNumber, TokenType.OpeningCurlyBracket, val);
-                    break;
-                case "}":
-                    return new Token(input.Position, input.LineNumber, TokenType.ClosingCurlyBracket, val);
-                    break;
-                case "[":
-                    return new Token(input.Position, input.LineNumber, TokenType.OpeningBracket, val);
-                    break;
-                case "]":
-                    return new Token(input.Position, input.LineNumber, TokenType.ClosingBracket, val);
-                    break;
+                case ',':
+                    return new Token(input.Position, input.LineNumber, TokenType.Comma, ""+val);
+                    
+                case ':':
+                    return new Token(input.Position, input.LineNumber, TokenType.Colon, ""+val);
+                    
+                case '{':
+                    return new Token(input.Position, input.LineNumber, TokenType.OpeningCurlyBracket, ""+val);
+                    
+                case '}':
+                    return new Token(input.Position, input.LineNumber, TokenType.ClosingCurlyBracket, ""+val);
+                    
+                case '[':
+                    return new Token(input.Position, input.LineNumber, TokenType.OpeningBracket, ""+val);
+                    
+                case ']':
+                    return new Token(input.Position, input.LineNumber, TokenType.ClosingBracket, ""+val);
+                    
             }
-            throw new Exception("Unexpected Token");
+            throw new Exception($"Unexpected Token at Ln {ln} Col {initPos + 1}");
         }
     }
 }
