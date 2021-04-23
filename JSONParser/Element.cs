@@ -17,6 +17,11 @@ namespace JSONParser
     {
         private string key;
         private JSONValue value;
+
+        public JSONElement(){
+            
+        }
+
         public override string ToString()
         {
             return $"\"{key}\": {value}";
