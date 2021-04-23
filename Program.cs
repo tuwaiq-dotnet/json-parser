@@ -20,13 +20,14 @@ namespace JSONParser
             // Utilities.run();
             try
             {
-                Input input = new Input("true false null 3443 -23 23e+3 \"dwoidjoqijdooqdj\"");
+                Input input = new Input(" : ,, { }: [[] ]] true false null 3443 -23 23e+3 \"dwoidjoqijdooqdj\"");
                 Tokenizer t = new Tokenizer(input, new Tokenizable[]
                 {
                     new StringHandler(),
                     new WhitespaceHandler(),
                     new NumberHandler(),
-                    new SingleWordHandler()
+                    new SingleWordHandler(),
+                    new SingleCharHandler()
                 });
                 Token token = new Token();
                 List<Token> tokens = new List<Token>();
