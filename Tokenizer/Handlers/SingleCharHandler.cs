@@ -16,35 +16,35 @@ namespace JSONParser
     public class SingleCharHandler : Tokenizable
     {
         private List<Char> jsonCharacters = new List<Char> { ',', ':', '{', '}', '[', ']' };
-        public override bool tokenizable(Tokenizer t)
+        public override bool tokenizable(Input input)
         {
-            return this.jsonCharacters.Contains(t.input.peek());
+            return this.jsonCharacters.Contains(input.peek());
         }
 
-        public override Token tokenize(Tokenizer t)
+        public override Token tokenize(Input input)
         {
-            int initPos = t.input.Position;
-            String val = t.input.step() + "";
+            int initPos = input.Position;
+            String val = input.step() + "";
 
             switch (val)
             {
                 case ",":
-                    return new Token(t.input.Position, t.input.LineNumber, TokenType.Comma, val);
+                    return new Token(input.Position, input.LineNumber, TokenType.Comma, val);
                     break;
                 case ":":
-                    return new Token(t.input.Position, t.input.LineNumber, TokenType.Colon, val);
+                    return new Token(input.Position, input.LineNumber, TokenType.Colon, val);
                     break;
                 case "{":
-                    return new Token(t.input.Position, t.input.LineNumber, TokenType.OpeningCurlyBracket, val);
+                    return new Token(input.Position, input.LineNumber, TokenType.OpeningCurlyBracket, val);
                     break;
                 case "}":
-                    return new Token(t.input.Position, t.input.LineNumber, TokenType.ClosingCurlyBracket, val);
+                    return new Token(input.Position, input.LineNumber, TokenType.ClosingCurlyBracket, val);
                     break;
                 case "[":
-                    return new Token(t.input.Position, t.input.LineNumber, TokenType.OpeningBracket, val);
+                    return new Token(input.Position, input.LineNumber, TokenType.OpeningBracket, val);
                     break;
                 case "]":
-                    return new Token(t.input.Position, t.input.LineNumber, TokenType.ClosingBracket, val);
+                    return new Token(input.Position, input.LineNumber, TokenType.ClosingBracket, val);
                     break;
             }
             throw new Exception("Unexpected Token");
