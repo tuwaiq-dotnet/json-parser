@@ -15,6 +15,5 @@ namespace JSONParser
     {
         public abstract bool tokenizable(Tokenizer tokenizer);
         public abstract Token tokenize(Tokenizer tokenizer);
-        public abstract string loop(InputCondition condition);
     }
 }
