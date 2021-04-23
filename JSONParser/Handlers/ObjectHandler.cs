@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -12,6 +13,9 @@
 namespace JSONParser.Handlers {
     public class ObjectHandler
     {
-        
+        private List<Token> tokens;
+        public void handle(Token token, Tokenizer t) {
+            
+        }
     }
 }

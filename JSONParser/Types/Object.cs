@@ -20,6 +20,7 @@ namespace JSONParser
         public override JSONObject getObject() { return this; }
         public JSONElement getElement(int index) { return this.elements[index]; }
         public override bool IsObject() { return true; }
+        // public static bool isObject(Token t){return false;}
         public override string ToString()
         {
             string s = "";
