@@ -15,6 +15,7 @@ namespace JSONParser
 {
     public class JSONArray : JSONValue
     {
+        public JSONValue[] x;
 
     }
 }

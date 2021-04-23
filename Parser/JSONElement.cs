@@ -17,6 +17,10 @@ namespace JSONParser
     {
         private string key;
         private JSONValue value;
+        public override string ToString()
+        {
+            return $"\"{key}\": {value}";
+        }
     }
 }
 

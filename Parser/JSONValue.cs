@@ -18,15 +18,22 @@ namespace JSONParser
         private JSONMemberType Type;
         private Token[] Value;
 
-        public JSONObject getObject() {return null;}
-        public JSONArray getArray() {return null;}
-        public JSONString getString() {return null;}
-        public JSONNumber getNumber() {return null;}
-        public JSONNull getNull() {return null;}
-        public JSONTrue getTrue() {return null;}
-        public JSONFalse getFalse() {return null;}
+        public virtual JSONObject getObject() { return null; }
+        public virtual JSONArray getArray() { return null; }
+        public virtual JSONString getString() { return null; }
+        public virtual JSONNumber getNumber() { return null; }
+        public virtual JSONNull getNull() { return null; }
+        public virtual JSONTrue getTrue() { return null; }
+        public virtual JSONFalse getFalse() { return null; }
 
 
+        public virtual bool IsObject() { return false; }
+        public virtual bool IsArray() { return false; }
+        public virtual bool IsString() { return false; }
+        public virtual bool IsNumber() { return false; }
+        public virtual bool IsNull() { return false; }
+        public virtual bool IsTrue() { return false; }
+        public virtual bool IsFalse() { return false; }
     }
 
     public enum JSONMemberType

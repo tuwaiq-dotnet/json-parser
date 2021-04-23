@@ -15,6 +15,13 @@ namespace JSONParser
 {
     public class JSONTrue : JSONValue
     {
+        public override bool IsFalse() { return true; }
+        public override JSONTrue getTrue() { return this; }
+        public bool getValue() { return true; }
+        public override string ToString()
+        {
+            return "true";
+        }
 
     }
 }
