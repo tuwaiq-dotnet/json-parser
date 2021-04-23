@@ -1,38 +1,38 @@
-
 /*
- * Tuwaiq .NET Bootcamp
+ * Tuwaiq .NET Bootcamp | JSON Parser
  * 
- * Authors
- * 
- *  Younes Alturkey
- *  Abdulrahman Bin Maneea
- *  Abdullah Albagshi
- *  Ibrahim Alobaysi
+ * Team Members
+ * Abdulrahman Bin Maneea (Team Lead)
+ * Younes Alturkey
+ * Abdullah Albagshi
+ * Ibrahim Alobaysi
  */
-
 namespace JSONParser
-
 {
-    public class StringTokenizer : Tokenizable
+    public class StringHandler : ITokenizable
     {
         private const char DOUBLE_QOUTE = '"';
-        private const char SLASH = '"';
-
-        public override bool tokenizable(Tokenizer t)
+        private const char SLASH = '\\';
+        public override bool tokenizable(Input input)
         {
-            return t.input.peek() == DOUBLE_QOUTE;
+            return input.peek() == DOUBLE_QOUTE;
         }
 
-        public override Token tokenize(Tokenizer t)
+        public override Token tokenize(Input input)
         {
-            int initPos = t.input.Position;
-            string val = t.input.step().Character+"";
-            while(t.input.hasMore()){
-                val += t.input.step().Character;
-                if(t.input.Character == SLASH) val += t.input.step().Character;
-                else if (t.input.Character == DOUBLE_QOUTE) return new Token(t.input.Position, t.input.LineNumber, TokenType.String, val);
+            int initPos = input.Position;
+            int ln = input.LineNumber;
+            string val = input.step().Character + "";
+            while (input.hasMore())
+            {
+                val += input.step().Character;
+                if (input.Character == SLASH)
+                    val += input.step().Character;
+                else if (input.Character == DOUBLE_QOUTE)
+                    return new Token(input.Position, input.LineNumber, TokenType.String, val);
             }
-            throw new System.Exception($"Reached EOF without finding a closing double qoute for the one in position {initPos}"); 
+
+            throw new System.Exception($"EOF reached without finding a closing '\"' at Ln {ln} Col {initPos}");
         }
     }
 }
