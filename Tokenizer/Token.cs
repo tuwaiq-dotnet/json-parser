@@ -52,13 +52,8 @@ namespace JSONParser
         }
     }
 
-<<<<<<< HEAD
     public enum TokenType
     {
-=======
-    public enum TokenType
-    {
->>>>>>> number-handler
         OpeningBracket,
         ClosingBracket,
         OpeningCurlyBracket,

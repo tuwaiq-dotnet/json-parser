@@ -9,7 +9,7 @@
  */
 namespace JSONParser
 {
-    public class StringHandler : ITokenizable
+    public class StringHandler : Tokenizable
     {
         private const char DOUBLE_QOUTE = '"';
         private const char SLASH = '\\';

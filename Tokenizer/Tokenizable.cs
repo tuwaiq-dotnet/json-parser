@@ -13,7 +13,7 @@ namespace JSONParser
 {
     public abstract class Tokenizable
     {
-        public abstract bool tokenizable(Tokenizer tokenizer);
-        public abstract Token tokenize(Tokenizer tokenizer);
+        public abstract bool tokenizable(Input input);
+        public abstract Token tokenize(Input input);
     }
 }

@@ -20,7 +20,7 @@ namespace JSONParser
      *   "number_4" : 1.0E+2
      * }
      */
-    public class JSONNumberHandler : ITokenizable
+    public class NumberHandler : Tokenizable
     {
         static protected bool readDot = false;
         static protected bool readNegative = false;

@@ -11,7 +11,7 @@ using System;
 
 namespace JSONParser
 {
-    public class WhitespaceHandler : ITokenizable
+    public class WhitespaceHandler : Tokenizable
     {
         public override bool tokenizable(Input input)
         {

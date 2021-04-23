@@ -17,15 +17,15 @@ namespace JSONParser
         // Driver method
         static void Main(string[] args)
         {
-            // Utilities.run();
+            Utilities.run();
             try
             {
-                Input input = new Input("\"hi this is args string\" 23 32 -20 1.0e-5 \"here's another\" 153 -1251651651 \"ANOTHER ONE YO\"");
-                Tokenizer t = new Tokenizer(input, new ITokenizable[]
+                Input input = new Input("\"hi this is args string\" 23 32 -20 .7 1.0e-5 \"here's another\" 153 -1251651651 \"ANOTHER ONE YO\"");
+                Tokenizer t = new Tokenizer(input, new Tokenizable[]
                 {
                     new StringHandler(),
                     new WhitespaceHandler(),
-                    new JSONNumberHandler()
+                    new NumberHandler()
                 });
                 Token token = new Token();
                 List<Token> tokens = new List<Token>();
