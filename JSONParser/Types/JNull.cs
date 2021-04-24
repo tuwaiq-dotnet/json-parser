@@ -16,16 +16,27 @@ namespace JSONParser
     public class JNull : Value
     {
         Token token;
-        new public static readonly JSONMemberType type = JSONMemberType.Null;
         public JNull(Token token)
         {
             this.token = token;
         }
         public override bool IsNull() { return true; }
         public override JNull getNull() { return this; }
+
+
+        public override JSONMemberType getType()
+        {
+            return JSONMemberType.Null;
+        }
+
         public override string ToString()
         {
             return "null";
+        }
+
+        public override string Indent(uint indentation = 0)
+        {
+            return this.ToString();
         }
     }
 }

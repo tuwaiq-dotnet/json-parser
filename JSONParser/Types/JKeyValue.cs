@@ -25,7 +25,7 @@ namespace JSONParser
         public override string ToString()
         {
             // return $@"{this.key}: {this.value}";
-            return $"Key: {this.key}\nValue: {this.value}\nType: {this.value.type}";
+            return $"Key: {this.key}\nValue: {this.value}\nType: {this.value.getType()}\n_____________________________\n";
         }
     }
 }

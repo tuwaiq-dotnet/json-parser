@@ -16,15 +16,26 @@ namespace JSONParser
     public class JNumber : Value
     {
         Token token;
-        new public static readonly JSONMemberType type = JSONMemberType.Number;
         public JNumber(Token token)
         {
+            this.Children = 0;
             this.token = token;
         }
 
         public override string ToString()
         {
             return token.Value;
+        }
+
+
+        public override JSONMemberType getType()
+        {
+            return JSONMemberType.Number;
+        }
+
+        public override string Indent(uint indentation = 0)
+        {
+            return this.ToString();
         }
     }
 }

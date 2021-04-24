@@ -15,8 +15,11 @@ namespace JSONParser
 {
     public abstract class Value
     {
-        public JSONMemberType type;
+        public uint Children = 1;
         private Token[] Values;
+
+        public abstract JSONMemberType getType();
+
 
         public virtual JObject getObject() { return null; }
         public virtual JArray getArray() { return null; }
@@ -34,6 +37,7 @@ namespace JSONParser
         public virtual bool IsNull() { return false; }
         public virtual bool IsTrue() { return false; }
         public virtual bool IsFalse() { return false; }
+        public abstract string Indent(uint indentation = 0);
     }
 
     public enum JSONMemberType

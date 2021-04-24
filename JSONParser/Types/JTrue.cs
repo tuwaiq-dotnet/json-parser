@@ -16,7 +16,6 @@ namespace JSONParser
     public class JTrue : Value
     {
         Token token;
-        new public static readonly JSONMemberType type = JSONMemberType.True;
         public JTrue(Token token)
         {
             this.token = token;
@@ -30,5 +29,14 @@ namespace JSONParser
             return "true";
         }
 
+        public override JSONMemberType getType()
+        {
+            return JSONMemberType.True;
+        }
+
+        public override string Indent(uint indentation = 0)
+        {
+            return this.ToString();
+        }
     }
 }

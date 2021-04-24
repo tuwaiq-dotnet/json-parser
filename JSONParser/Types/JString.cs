@@ -16,7 +16,6 @@ namespace JSONParser
     public class JString : Value
     {
         Token token;
-        new public static readonly JSONMemberType type = JSONMemberType.String;
         public JString(Token token)
         {
             this.token = token;
@@ -25,6 +24,17 @@ namespace JSONParser
         public override string ToString()
         {
             return token.Value;
+        }
+
+
+        public override JSONMemberType getType()
+        {
+            return JSONMemberType.String;
+        }
+
+        public override string Indent(uint indentation = 0)
+        {
+            return this.ToString();
         }
     }
 }

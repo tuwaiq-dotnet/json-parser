@@ -25,6 +25,7 @@ namespace JSONParser
         public Value ParseNextType()
         {
             Token token = this.tokenizer.tokenize();
+            if (token==null) return null;
             while (token.Type == TokenType.Whitespace)
             {
                 token = tokenizer.tokenize();
