@@ -15,10 +15,14 @@ namespace JSONParser
 {
     public class JTrue : Value
     {
-        public JTrue(Token token, Tokenizer tokenizer){
-            
+        Token token;
+        new public static readonly JSONMemberType type = JSONMemberType.True;
+        public JTrue(Token token)
+        {
+            this.token = token;
         }
-        public override bool IsFalse() { return true; }
+
+        public override bool IsTrue() { return true; }
         public override JTrue getTrue() { return this; }
         public bool getValue() { return true; }
         public override string ToString()

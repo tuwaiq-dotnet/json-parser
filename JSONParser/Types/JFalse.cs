@@ -15,8 +15,11 @@ namespace JSONParser
 {
     public class JFalse : Value
     {
-        public JFalse(Token token, Tokenizer tokenizer){
-            
+        Token token;
+        new public static readonly JSONMemberType type = JSONMemberType.False;
+        public JFalse(Token token)
+        {
+            this.token = token;
         }
         public override bool IsFalse() { return true; }
         public override JFalse getFalse() { return this; }

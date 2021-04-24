@@ -13,12 +13,12 @@
 
 namespace JSONParser
 {
-    public class JSONElement
+    public class Element
     {
         private string key;
-        private JSONValue value;
+        private Value value;
 
-        public JSONElement(){
+        public Element(){
             
         }
 

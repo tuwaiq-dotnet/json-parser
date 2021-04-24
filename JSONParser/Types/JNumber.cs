@@ -15,9 +15,16 @@ namespace JSONParser
 {
     public class JNumber : Value
     {
-        public JNumber(Token token, Tokenizer tokenizer)
+        Token token;
+        new public static readonly JSONMemberType type = JSONMemberType.Number;
+        public JNumber(Token token)
         {
+            this.token = token;
+        }
 
+        public override string ToString()
+        {
+            return token.Value;
         }
     }
 }

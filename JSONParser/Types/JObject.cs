@@ -15,21 +15,20 @@ namespace JSONParser
 {
     public class JObject : Value
     {
-        private List<Element> elements;
-        public JObject(Token token, Tokenizer tokenizer)
-        {
+        new public static readonly JSONMemberType type = JSONMemberType.Object;
 
+        public JObject()
+        {
+            Items = new List<JKeyValue>();
         }
+        public List<JKeyValue> Items;
         public override JObject getObject() { return this; }
-        public Element getElement(int index) { return this.elements[index]; }
+        public JKeyValue getElement(int index) { return this.Items[index]; }
         public override bool IsObject() { return true; }
-        // public static bool isObject(Token t){return false;}
+
         public override string ToString()
         {
-            string s = "";
-            foreach (var element in elements)
-                s += element;
-            return s;
+            return $"{string.Join(",", this.Items)}";
         }
     }
 }

@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 
 /*
  * Tuwaiq .NET Bootcamp
@@ -15,10 +15,12 @@ namespace JSONParser
 {
     public class JArray : Value
     {
-        public Value[] x;
-
-        public JArray(Token token, Tokenizer tokenizer){
-            
+        public List<Value> Items = new List<Value>();
+        new public static readonly JSONMemberType type = JSONMemberType.Array;
+        public override string ToString()
+        {
+            return $"[{string.Join(", ", Items)}]";
         }
     }
+    
 }

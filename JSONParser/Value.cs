@@ -13,18 +13,18 @@
 
 namespace JSONParser
 {
-    public abstract class JSONValue
+    public abstract class Value
     {
-        private JSONMemberType Type;
-        private Token[] Value;
+        public JSONMemberType type;
+        private Token[] Values;
 
-        public virtual JSONObject getObject() { return null; }
-        public virtual JSONArray getArray() { return null; }
-        public virtual JSONString getString() { return null; }
-        public virtual JSONNumber getNumber() { return null; }
-        public virtual JSONNull getNull() { return null; }
-        public virtual JSONTrue getTrue() { return null; }
-        public virtual JSONFalse getFalse() { return null; }
+        public virtual JObject getObject() { return null; }
+        public virtual JArray getArray() { return null; }
+        public virtual JString getString() { return null; }
+        public virtual JNumber getNumber() { return null; }
+        public virtual JNull getNull() { return null; }
+        public virtual JTrue getTrue() { return null; }
+        public virtual JFalse getFalse() { return null; }
 
 
         public virtual bool IsObject() { return false; }

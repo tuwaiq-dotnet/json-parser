@@ -1,5 +1,5 @@
-
-
+using System.Collections.Generic;
+using System;
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -13,52 +13,108 @@
 
 namespace JSONParser
 {
-    public class JSONParser
+    public class Parser
     {
-        public delegate JSONValue parseValue(Token token, Tokenizer t);
-        private JSONValue root;
-        private int elements;
+        private List<Token> tokens;
         private Tokenizer tokenizer;
-        public JSONParser(string source)
+        public Parser(Tokenizer tokenizer)
         {
-            tokenizer = new Tokenizer(new Input(source), new Tokenizable[]{
-                new StringHandler(),
-                // new SingleWordHandler(),
-                // new SingleCharHandler()
-            });
-            Token token = tokenizer.tokenize();
-            while (token.Type == TokenType.Whitespace && token != null)
-            {
-                token = tokenizer.tokenize();
-                if (token == null)
-                {
-                    return;
-                }
-            }
-            parseValue deleg = getDelegate(token, tokenizer);
-            root = deleg(token, tokenizer);
+            this.tokenizer = tokenizer;
         }
 
-        public parseValue getDelegate(Token token, Tokenizer t)
+        public Value ParseNextType()
         {
+            Token token = this.tokenizer.tokenize();
+            while (token.Type == TokenType.Whitespace)
+            {
+                token = tokenizer.tokenize();
+                if (token == null) return null;
+            }
             switch (token.Type)
             {
                 case TokenType.OpeningBracket:
-                    return null; // array
+                    return this.ParseArray();
                 case TokenType.OpeningCurlyBracket:
-                    return null; // object
+                    return this.ParseObject();
                 case TokenType.String:
-                    return null; // string
+                    return new JString(token);
                 case TokenType.Number:
-                    return null; // number
+                    return new JNumber(token);
                 case TokenType.True:
-                    return null; // true
+                    return new JTrue(token);
                 case TokenType.False:
-                    return null; // true
+                    return new JFalse(token);
                 case TokenType.Null:
-                    return null; // true
+                    return new JNull(token);
             }
-            throw new System.Exception($@"Unexpected token ""{token.Value}"" at position {token.Position} (Line: {token.LineNumber})");
+            throw new Exception($@"Unexpected token ""{token.Value}"" at position {token.Position} (Line: {token.LineNumber})");
+        }
+
+        private JObject ParseObject()
+        {
+            JObject obj = new JObject();
+            Token token = this.SkipWhiteSpace();
+            bool firstElement = true;
+            while (token.Type != TokenType.ClosingCurlyBracket)
+            {
+                if (token.Type == TokenType.String)
+                {
+                    firstElement = false;
+                    obj.Items.Add(ParseKeyValue(token));
+                }
+                else if (token.Type != TokenType.Comma || firstElement)
+                    throw new Exception($@"Unexpected token ""{token.Value}"" at position {token.Position} (Line: {token.LineNumber})");
+                token = this.SkipWhiteSpace();
+                if (token == null) throw new Exception($@"EOF reached before closing a JSON object (Missing a curly bracket)");
+            }
+            return obj;
+        }
+
+        private JKeyValue ParseKeyValue(Token key)
+        {
+            Token token;
+            do
+            {
+                token = tokenizer.tokenize();
+                if (token == null)
+                    throw new Exception($"Either EOF reached or a weird token was encountered while expecting a colon");
+            } while (token.Type == TokenType.Whitespace);
+
+            if (token.Type != TokenType.Colon)
+                throw new Exception($@"Unexpected token ""{key.Value}"" at position {key.Position}, line {key.LineNumber} (Expected a colon)");
+            Value value = this.ParseNextType();
+            if (value == null)
+                throw new Exception($@"Either EOF reached or a weird token was encountered while expecting a JSON data type");
+            return new JKeyValue(key, value);
+        }
+
+        private JArray ParseArray()
+        {
+            JArray arr = new JArray();
+            while (true)
+            {
+                arr.Items.Add(this.ParseNextType());
+                Token token = this.SkipWhiteSpace();
+                if (token == null) throw new Exception("Either EOF reached or a weird token was encountered while expecting a JSON data type");
+                else if (token.Type == TokenType.Comma) continue;
+                else if (token.Type == TokenType.ClosingBracket) break;
+                else throw new Exception($@"Unexpected token ""{token.Value}"" at position {token.Position}, line {token.LineNumber} (Expected a colon)");
+            }
+            return arr;
+        }
+
+        private Token SkipWhiteSpace()
+        {
+            Token token;
+            do
+            {
+                token = this.tokenizer.tokenize();
+                if (token == null)
+                {
+                    return null;
+                }
+            } while (token.Type == TokenType.Whitespace);
+            return token;
         }
     }
 }

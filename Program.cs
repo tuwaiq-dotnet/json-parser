@@ -17,6 +17,29 @@ namespace JSONParser
         // Driver method
         static void Main(string[] args)
         {
+
+
+
+            
+            JSON j = new JSON(@"
+            {
+                ""k1"": ""Value"",
+                ""k2"": true,
+                ""k3"" : null,
+                ""k4"": false,
+                ""k5"": [1,   55, -3 ,""meow"", [null]]
+            }");
+            System.Console.WriteLine(j);
+
+
+
+
+
+
+
+            Environment.Exit(0);
+
+
             // Utilities.run();
             try
             {
