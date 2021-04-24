@@ -26,14 +26,6 @@ namespace JSONParser
         public virtual JTrue getTrue() { return null; }
         public virtual JFalse getFalse() { return null; }
 
-
-        public virtual bool IsObject() { return false; }
-        public virtual bool IsArray() { return false; }
-        public virtual bool IsString() { return false; }
-        public virtual bool IsNumber() { return false; }
-        public virtual bool IsNull() { return false; }
-        public virtual bool IsTrue() { return false; }
-        public virtual bool IsFalse() { return false; }
         public abstract string Indent(uint indentation = 0);
     }
 

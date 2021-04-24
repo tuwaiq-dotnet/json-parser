@@ -20,7 +20,6 @@ namespace JSONParser
         {
             this.token = token;
         }
-        public override bool IsFalse() { return true; }
         public override JFalse getFalse() { return this; }
         public bool getValue() { return false; }
 

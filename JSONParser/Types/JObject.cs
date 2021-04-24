@@ -36,11 +36,21 @@ namespace JSONParser
         public override JSONMemberType getType() { return JSONMemberType.Object; }
         public override JObject getObject() { return this; }
         public JKeyValue getElement(int index) { return this.Items[index]; }
-        public override bool IsObject() { return true; }
-        public override string ToString()
+        public override string ToString() { return $"{{{string.Join(",", this.Items)}}}"; }
+
+        public Value getItem(int i)
         {
-            // TODO: re-implement
-            return $"{{{string.Join(",", this.Items)}}}";
+
+            return this.Items.Count > i? this.Items[i].value: null;
+
+        }
+
+        public Value getItem(string key)
+        {
+            foreach(var item in this.Items)
+                if(item.key.Value == key)
+                return item.value;
+                return null;
         }
 
         public override string Indent(uint indentation = 0)

@@ -20,7 +20,6 @@ namespace JSONParser
         {
             this.token = token;
         }
-        public override bool IsNull() { return true; }
         public override JNull getNull() { return this; }
 
 
