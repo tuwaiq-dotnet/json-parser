@@ -41,16 +41,16 @@ namespace JSONParser
         public Value getItem(int i)
         {
 
-            return this.Items.Count > i? this.Items[i].value: null;
+            return this.Items.Count > i ? this.Items[i].value : null;
 
         }
 
         public Value getItem(string key)
         {
-            foreach(var item in this.Items)
-                if(item.key.Value == key)
-                return item.value;
-                return null;
+            foreach (var item in this.Items)
+                if (item.key.Value == $@"""{key}""")
+                    return item.value;
+            return null;
         }
 
         public override string Indent(uint indentation = 0)

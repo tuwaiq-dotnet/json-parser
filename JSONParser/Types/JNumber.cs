@@ -33,6 +33,11 @@ namespace JSONParser
             return JSONMemberType.Number;
         }
 
+        public override JNumber getNumber()
+        {
+            return this;
+        }
+
         public override string Indent(uint indentation = 0)
         {
             return this.ToString();

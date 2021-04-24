@@ -21,6 +21,11 @@ namespace JSONParser
             this.token = token;
         }
 
+        public override JString getString()
+        {
+            return this;
+        }
+
         public override string ToString()
         {
             return token.Value;
