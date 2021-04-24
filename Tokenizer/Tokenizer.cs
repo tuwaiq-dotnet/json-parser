@@ -25,9 +25,11 @@ namespace JSONParser
         }
         public Token tokenize()
         {
+            if(!this.input.hasMore())
+                return null;
             foreach (var handler in this.handlers)
                 if (handler.tokenizable(this.input)) return handler.tokenize(this.input);
-            return null;
+            throw new Exception($@"Unexpected token: ""{this.input.peek()}"" at position {this.input.Position} (Line: {this.input.LineNumber}, column: {this.input.Column})");
         }
     }
 }

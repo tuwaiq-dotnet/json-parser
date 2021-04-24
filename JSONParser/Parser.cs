@@ -15,8 +15,8 @@ namespace JSONParser
 {
     public class Parser
     {
-        private List<Token> tokens;
         private Tokenizer tokenizer;
+
         public Parser(Tokenizer tokenizer)
         {
             this.tokenizer = tokenizer;
@@ -24,13 +24,9 @@ namespace JSONParser
 
         public Value ParseNextType()
         {
-            Token token = this.tokenizer.tokenize();
+            Token token = this.SkipWhiteSpace();
             if (token==null) return null;
-            while (token.Type == TokenType.Whitespace)
-            {
-                token = tokenizer.tokenize();
-                if (token == null) return null;
-            }
+            
             switch (token.Type)
             {
                 case TokenType.OpeningBracket:
@@ -60,8 +56,8 @@ namespace JSONParser
             {
                 if (token.Type == TokenType.String)
                 {
-                    firstElement = false;
                     obj.Items.Add(ParseKeyValue(token));
+                    firstElement = false;
                 }
                 else if (token.Type != TokenType.Comma || firstElement)
                     throw new Exception($@"Unexpected token ""{token.Value}"" at position {token.Position} (Line: {token.LineNumber})");

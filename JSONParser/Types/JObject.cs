@@ -33,17 +33,14 @@ namespace JSONParser
         }
 
 
-        public override JSONMemberType getType()
-        {
-            return JSONMemberType.Object;
-        }
+        public override JSONMemberType getType() { return JSONMemberType.Object; }
         public override JObject getObject() { return this; }
         public JKeyValue getElement(int index) { return this.Items[index]; }
         public override bool IsObject() { return true; }
-
         public override string ToString()
         {
-            return $"Found an object with the following items:{{\n{string.Join(",", this.Items)} }}";
+            // TODO: re-implement
+            return $"{{{string.Join(",", this.Items)}}}";
         }
 
         public override string Indent(uint indentation = 0)
@@ -58,7 +55,7 @@ namespace JSONParser
             {
                 ret = ret.Substring(0, ret.Length - 2) + "\n";
             }
-            for (uint i = 0; i < indentation+1; i++) ret += '\t';
+            for (uint i = 0; i < indentation + 1; i++) ret += '\t';
             return ret + "}";
         }
     }

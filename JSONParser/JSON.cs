@@ -19,6 +19,7 @@ namespace JSONParser
         private int elements;
         private Tokenizer tokenizer;
 
+        
         public Value Root { get { return root; } }
         public uint Elements { get { return root.Children; } }
 
@@ -31,22 +32,26 @@ namespace JSONParser
                 new SingleWordHandler(),
                 new SingleCharHandler(),
             });
+
             Parser parser = new Parser(tokenizer);
             root = parser.ParseNextType();
-            Value NULL = parser.ParseNextType();
-            if (NULL!=null) throw new Exception("More than one root exists!");
-            
-            // TODO: Check if non-white-space tokens still exist.
+
+            Value tmp = parser.ParseNextType();
+            if (tmp != null) throw new Exception("More than one root exists!");
         }
 
         public override string ToString()
         {
             return root.ToString();
         }
-    
-        public string Indent(){
 
+        public string Indent()
+        {
             return this.Root.Indent(0);
+        }
+
+        public string Inspect(){
+            return ""; // TODO: implement
         }
     }
 }

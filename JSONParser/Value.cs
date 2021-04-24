@@ -15,11 +15,8 @@ namespace JSONParser
 {
     public abstract class Value
     {
-        public uint Children = 1;
-        private Token[] Values;
-
+        public uint Children = 1; // TODO: make use of this variable
         public abstract JSONMemberType getType();
-
 
         public virtual JObject getObject() { return null; }
         public virtual JArray getArray() { return null; }
