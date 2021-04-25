@@ -25,7 +25,9 @@ namespace JSONParser
             {""key7"": {""key8"":
             1}}}");
 
-            // System.Console.WriteLine(j.Indent());
+            System.Console.WriteLine($"ToString Format: {j}\n\n\n");
+            System.Console.WriteLine($"Indentation Format: {j.Indent()}\n\n\n");
+            System.Console.WriteLine(j.Root.getObject().getItem("k5").getArray().getItem(4));
             j.ConsoleColorization();
 
         }
