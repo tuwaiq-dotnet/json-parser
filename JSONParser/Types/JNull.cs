@@ -1,5 +1,5 @@
 
-
+using System;
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -36,6 +36,15 @@ namespace JSONParser
         public override string Indent(uint indentation = 0)
         {
             return this.ToString();
+        }
+
+        public override Value ConsoleColorization(int indentation = 0)
+        {
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.Write(this);
+            Console.ResetColor();
+            return this;
         }
     }
 }

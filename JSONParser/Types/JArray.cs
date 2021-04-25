@@ -1,4 +1,6 @@
+
 using System.Collections.Generic;
+using System;
 
 /*
  * Tuwaiq .NET Bootcamp
@@ -44,6 +46,30 @@ namespace JSONParser
             }
             for (uint i = 0; i < indentation + 1; i++) ret += '\t';
             return ret + "]";
+        }
+
+        public override Value ConsoleColorization(int indentation = 0)
+        {
+            Console.ResetColor();
+            Console.Write("[\n");
+            int count = 0;
+            foreach (var item in this.Items)
+            {
+                for (uint i = 0; i <= indentation + 1; i++) Console.Write('\t');
+                item.ConsoleColorization(indentation + 1);
+                if (++count == this.Items.Count)
+                    Console.Write("\n");
+                else
+                    Console.Write(",\n");
+            }
+            // if (ret.Length > 2)
+            // {
+            //     ret = ret.Substring(0, ret.Length - 2) + "\n";
+            // }
+            for (uint i = 0; i < indentation + 1; i++) Console.Write('\t');
+            Console.Write("]");
+            Console.ResetColor();
+            return this;
         }
     }
 
