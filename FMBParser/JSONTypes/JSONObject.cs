@@ -8,10 +8,7 @@
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
-
-using System;
 using System.Collections.Generic;
-using System.Dynamic;
 
 namespace JSONParser
 {
@@ -31,7 +28,6 @@ namespace JSONParser
             foreach (KeyValuePair<string, JSONType> kvp in value)
             {
                 obj += "\n      " + kvp.Key + ": " + kvp.Value;
-
                 if (i < value.Count - 1)
                     obj += ", ";
                 else
@@ -41,6 +37,5 @@ namespace JSONParser
 
             return obj;
         }
-
     }
 }

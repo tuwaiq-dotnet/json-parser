@@ -11,19 +11,18 @@ using System;
 
 namespace JSONParser
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            try
-            {
-                CLI.run();
-            }
-            catch (Exception error)
-            {
-                CLI.error(error.Message);
-            }
-
-        }
-    }
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			try
+			{
+				CLI.run();
+			}
+			catch (Exception error)
+			{
+				CLI.error(error.Message);
+			}
+		}
+	}
 }

@@ -3,208 +3,198 @@ using System.Collections.Generic;
 
 namespace JSONParser
 {
-    public class JSONDict
-    {
-        public Dictionary<string, JSONType> map;
+	public class JSONDict
+	{
+		public Dictionary<string, JSONType> map;
+		public JSONDict(List<Token> tokens)
+		{
+			map = new Dictionary<string, JSONType>();
+			parse(tokens);
+		}
 
-        public JSONDict(List<Token> tokens)
-        {
-            map = new Dictionary<string, JSONType>();
-            parse(tokens);
-        }
+		public void addKeyValue(string key, JSONType value)
+		{
+			// Console.WriteLine("added: " + key);
+			map.Add(key, value);
+		}
 
-        public void addKeyValue(string key, JSONType value)
-        {
-            // Console.WriteLine("added: " + key);
-            map.Add(key, value);
-        }
+		public JSONType getValue(string key)
+		{
+			return map["\"" + key + "\""];
+		}
 
-        public JSONType getValue(string key)
-        {
-            return map["\"" + key + "\""];
-        }
+		public void parse(List<Token> tkns)
+		{
+			JSONTokens tokens = new JSONTokens(tkns);
+			Token key = null;
+			Token value = null;
+			while (tokens.hasMore())
+			{
+				key = tokens.step();
+				// Console.WriteLine("Key: " + key.Value);
+				if (key.Type == TokenType.String)
+				{
+					value = tokens.step(3);
+					// Console.WriteLine("value: " + value.Value);
+					if (value.Type == TokenType.String)
+						addKeyValue(key.Value, new JSONString(value.Value));
+					else if (value.Type == TokenType.Number)
+						addKeyValue(key.Value, new JSONNumber(Double.Parse(value.Value)));
+					else if (value.Type == TokenType.Null)
+						addKeyValue(key.Value, new JSONNull());
+					else if (value.Type == TokenType.False)
+						addKeyValue(key.Value, new JSONFalse());
+					else if (value.Type == TokenType.True)
+						addKeyValue(key.Value, new JSONTrue());
+					else if (value.Type == TokenType.OpeningBracket)
+						addKeyValue(key.Value, parseArray(tokens));
+					else if (value.Type == TokenType.OpeningCurlyBracket)
+						addKeyValue(key.Value, parseObject(tokens));
+					else if (tokens.hasMore())
+						tokens.step();
+				}
+			}
+		}
 
-        public void parse(List<Token> tkns)
-        {
-            JSONTokens tokens = new JSONTokens(tkns);
-            Token key = null;
-            Token value = null;
+		public JSONArray parseArray(JSONTokens tokens)
+		{
+			JSONArray list = new JSONArray();
+			Token value;
+			while (tokens.hasMore())
+			{
+				value = tokens.step();
+				if (value.Type == TokenType.ClosingBracket)
+					break;
+				if (value.Type == TokenType.String)
+					list.Add(new JSONString(value.Value));
+				else if (value.Type == TokenType.Number)
+					list.Add(new JSONNumber(Double.Parse(value.Value)));
+				else if (value.Type == TokenType.Null)
+					list.Add(new JSONNull());
+				else if (value.Type == TokenType.True)
+					list.Add(new JSONTrue());
+				else if (value.Type == TokenType.False)
+					list.Add(new JSONFalse());
+				else if (value.Type == TokenType.OpeningBracket)
+					list.Add(parseArray(tokens));
+				else if (value.Type == TokenType.OpeningCurlyBracket)
+					list.Add(parseObject(tokens));
+			}
 
-            while (tokens.hasMore())
-            {
-                key = tokens.step();
-                // Console.WriteLine("Key: " + key.Value);
-                if (key.Type == TokenType.String)
-                {
-                    value = tokens.step(3);
-                    // Console.WriteLine("value: " + value.Value);
+			return list;
+		}
 
-                    if (value.Type == TokenType.String)
-                        addKeyValue(key.Value, new JSONString(value.Value));
-                    else if (value.Type == TokenType.Number)
-                        addKeyValue(key.Value, new JSONNumber(Double.Parse(value.Value)));
-                    else if (value.Type == TokenType.Null)
-                        addKeyValue(key.Value, new JSONNull());
-                    else if (value.Type == TokenType.False)
-                        addKeyValue(key.Value, new JSONFalse());
-                    else if (value.Type == TokenType.True)
-                        addKeyValue(key.Value, new JSONTrue());
-                    else if (value.Type == TokenType.OpeningBracket)
-                        addKeyValue(key.Value, parseArray(tokens));
-                    else if (value.Type == TokenType.OpeningCurlyBracket)
-                        addKeyValue(key.Value, parseObject(tokens));
-                    else
-                      if (tokens.hasMore()) tokens.step();
-                }
-            }
-        }
+		public JSONObject parseObject(JSONTokens tokens)
+		{
+			JSONObject obj = new JSONObject();
+			Token value;
+			Token temp;
+			while (tokens.hasMore())
+			{
+				value = tokens.step();
+				if (value.Type == TokenType.ClosingCurlyBracket)
+					break;
+				while (tokens.hasMore() && value.Type == TokenType.String)
+				{
+					temp = tokens.step();
+					if (temp.Type == TokenType.String)
+					{
+						obj.value.Add(value.Value, new JSONString(temp.Value));
+						break;
+					}
+					else if (temp.Type == TokenType.Number)
+					{
+						obj.value.Add(value.Value, new JSONNumber(Double.Parse(temp.Value)));
+						break;
+					}
+					else if (temp.Type == TokenType.Null)
+					{
+						obj.value.Add(value.Value, new JSONNull());
+						break;
+					}
+					else if (temp.Type == TokenType.True)
+					{
+						obj.value.Add(value.Value, new JSONTrue());
+						break;
+					}
+					else if (temp.Type == TokenType.False)
+					{
+						obj.value.Add(value.Value, new JSONFalse());
+						break;
+					}
+					else if (temp.Type == TokenType.OpeningBracket)
+					{
+						obj.value.Add(value.Value, parseArray(tokens));
+						break;
+					}
+					else if (temp.Type == TokenType.OpeningCurlyBracket)
+					{
+						obj.value.Add(value.Value, parseObject(tokens));
+						break;
+					}
+				}
+			}
 
-        public JSONArray parseArray(JSONTokens tokens)
-        {
-            JSONArray list = new JSONArray();
-            Token value;
-            while (tokens.hasMore())
-            {
-                value = tokens.step();
+			return obj;
+		}
 
-                if (value.Type == TokenType.ClosingBracket)
-                    break;
+		public override string ToString()
+		{
+			string json = "{\n";
+			int i = 0;
+			foreach (KeyValuePair<string, JSONType> kvp in map)
+			{
+				json += $"   {kvp.Key}: {kvp.Value}";
+				if (i < map.Count - 1)
+					json += ",\n";
+				else
+					json += "\n";
+				i++;
+			}
 
-                if (value.Type == TokenType.String)
-                    list.Add(new JSONString(value.Value));
-                else if (value.Type == TokenType.Number)
-                    list.Add(new JSONNumber(Double.Parse(value.Value)));
-                else if (value.Type == TokenType.Null)
-                    list.Add(new JSONNull());
-                else if (value.Type == TokenType.True)
-                    list.Add(new JSONTrue());
-                else if (value.Type == TokenType.False)
-                    list.Add(new JSONFalse());
-                else if (value.Type == TokenType.OpeningBracket)
-                    list.Add(parseArray(tokens));
-                else if (value.Type == TokenType.OpeningCurlyBracket)
-                    list.Add(parseObject(tokens));
-            }
-            return list;
-        }
+			json += "}\n";
+			return json;
+		}
 
-        public JSONObject parseObject(JSONTokens tokens)
-        {
-            JSONObject obj = new JSONObject();
-            Token value;
-            Token temp;
-            while (tokens.hasMore())
-            {
-                value = tokens.step();
+		public void print()
+		{
+			CLI.setConsoleForegroundColor(ConsoleColor.Yellow);
+			Console.WriteLine("{");
+			int i = 0;
+			foreach (KeyValuePair<string, JSONType> kvp in map)
+			{
+				CLI.setConsoleForegroundColor(ConsoleColor.DarkCyan);
+				Console.Write($"   {kvp.Key}: ");
+				CLI.setConsoleForegroundColor(ConsoleColor.Green);
+				Console.Write($"{kvp.Value}");
+				CLI.setConsoleForegroundColor(ConsoleColor.White);
+				if (i < map.Count - 1)
+					Console.Write(",\n");
+				else
+					Console.Write("\n");
+				i++;
+			}
 
-                if (value.Type == TokenType.ClosingCurlyBracket)
-                    break;
+			CLI.setConsoleForegroundColor(ConsoleColor.Yellow);
+			Console.WriteLine("}");
+			CLI.resetConsoleForegroundColor();
+		}
 
-                while (tokens.hasMore() && value.Type == TokenType.String)
-                {
-                    temp = tokens.step();
-
-                    if (temp.Type == TokenType.String)
-                    {
-                        obj.value.Add(value.Value, new JSONString(temp.Value));
-                        break;
-                    }
-                    else if (temp.Type == TokenType.Number)
-                    {
-                        obj.value.Add(value.Value, new JSONNumber(Double.Parse(temp.Value)));
-                        break;
-                    }
-                    else if (temp.Type == TokenType.Null)
-                    {
-                        obj.value.Add(value.Value, new JSONNull());
-                        break;
-                    }
-                    else if (temp.Type == TokenType.True)
-                    {
-                        obj.value.Add(value.Value, new JSONTrue());
-                        break;
-                    }
-                    else if (temp.Type == TokenType.False)
-                    {
-                        obj.value.Add(value.Value, new JSONFalse());
-                        break;
-                    }
-                    else if (temp.Type == TokenType.OpeningBracket)
-                    {
-                        obj.value.Add(value.Value, parseArray(tokens));
-                        break;
-                    }
-                    else if (temp.Type == TokenType.OpeningCurlyBracket)
-                    {
-                        obj.value.Add(value.Value, parseObject(tokens));
-                        break;
-                    }
-                }
-            }
-            return obj;
-        }
-
-        public override string ToString()
-        {
-            string json = "{\n";
-            int i = 0;
-            foreach (KeyValuePair<string, JSONType> kvp in map)
-            {
-                json += $"   {kvp.Key}: {kvp.Value}";
-
-                if (i < map.Count - 1)
-                    json += ",\n";
-                else
-                    json += "\n";
-                i++;
-            }
-            json += "}\n";
-
-            return json;
-        }
-
-        public void print()
-        {
-            CLI.setConsoleForegroundColor(ConsoleColor.Yellow);
-            Console.WriteLine("{");
-            int i = 0;
-            foreach (KeyValuePair<string, JSONType> kvp in map)
-            {
-                CLI.setConsoleForegroundColor(ConsoleColor.DarkCyan);
-                Console.Write($"   {kvp.Key}: ");
-                CLI.setConsoleForegroundColor(ConsoleColor.Green);
-                Console.Write($"{kvp.Value}");
-                CLI.setConsoleForegroundColor(ConsoleColor.White);
-
-                if (i < map.Count - 1)
-                    Console.Write(",\n");
-                else
-                    Console.Write("\n");
-                i++;
-            }
-            CLI.setConsoleForegroundColor(ConsoleColor.Yellow);
-            Console.WriteLine("}");
-
-            CLI.resetConsoleForegroundColor();
-        }
-
-        public void printKeys()
-        {
-            Console.Write("Keys: [");
-            int i = 0;
-            foreach (KeyValuePair<string, JSONType> kvp in map)
-            {
-                CLI.setConsoleForegroundColor(ConsoleColor.DarkBlue);
-                Console.Write(kvp.Key);
-                CLI.resetConsoleForegroundColor();
-
-                if (i < map.Count - 1)
-                    Console.Write(", ");
-                else
-                    Console.Write("]");
-                i++;
-            }
-        }
-
-    }
+		public void printKeys()
+		{
+			Console.Write("Keys: [");
+			int i = 0;
+			foreach (KeyValuePair<string, JSONType> kvp in map)
+			{
+				CLI.setConsoleForegroundColor(ConsoleColor.DarkBlue);
+				Console.Write(kvp.Key);
+				CLI.resetConsoleForegroundColor();
+				if (i < map.Count - 1)
+					Console.Write(", ");
+				else
+					Console.Write("]");
+				i++;
+			}
+		}
+	}
 }

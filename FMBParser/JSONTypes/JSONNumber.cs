@@ -1,5 +1,3 @@
-
-
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -10,15 +8,14 @@
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
-
 namespace JSONParser
 {
-    public class JSONNumber : JSONType
-    {
-        public JSONNumber(double value)
-        {
-            this.value = value;
-            type = TokenType.Number;
-        }
-    }
+	public class JSONNumber : JSONType
+	{
+		public JSONNumber(double value)
+		{
+			this.value = value;
+			type = TokenType.Number;
+		}
+	}
 }

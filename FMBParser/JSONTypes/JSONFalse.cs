@@ -1,5 +1,3 @@
-
-
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -10,15 +8,14 @@
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
-
 namespace JSONParser
 {
-    public class JSONFalse : JSONType
-    {
-        public JSONFalse()
-        {
-            value = "false";
-            type = TokenType.False;
-        }
-    }
+	public class JSONFalse : JSONType
+	{
+		public JSONFalse()
+		{
+			value = "false";
+			type = TokenType.False;
+		}
+	}
 }

@@ -8,7 +8,6 @@
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
-
 using System;
 using System.Collections.Generic;
 
@@ -19,8 +18,8 @@ namespace JSONParser
         private List<string> keywords;
         public SingleWordHandler()
         {
-
         }
+
         public SingleWordHandler(List<string> keywords)
         {
             this.keywords = keywords;
@@ -28,26 +27,22 @@ namespace JSONParser
 
         public override bool tokenizable(Input input)
         {
-            string peekedWord = ""
-            + input.lookAhead()
-            + input.lookAhead(1)
-            + input.lookAhead(2)
-            + input.lookAhead(3);
+            string peekedWord = "" + input.lookAhead() + input.lookAhead(1) + input.lookAhead(2) + input.lookAhead(3);
             char fifthCharacter = input.lookAhead(4);
             char sixthCharacter = input.lookAhead(5);
-            return isNull(peekedWord, fifthCharacter)
-            || isTrue(peekedWord, fifthCharacter)
-            || isFalse(peekedWord += fifthCharacter, sixthCharacter);
+            return isNull(peekedWord, fifthCharacter) || isTrue(peekedWord, fifthCharacter) || isFalse(peekedWord += fifthCharacter, sixthCharacter);
         }
 
         static bool isNull(string word, char c)
         {
             return word == "null" && !Char.IsLetterOrDigit(c);
         }
+
         static bool isTrue(string word, char c)
         {
             return word == "true" && !Char.IsLetterOrDigit(c);
         }
+
         static bool isFalse(string word, char c)
         {
             return word == "false" && !Char.IsLetterOrDigit(c);
@@ -55,12 +50,7 @@ namespace JSONParser
 
         public override Token tokenize(Input input)
         {
-            string word = ""
-            + input.step().Character
-            + input.step().Character
-            + input.step().Character
-            + input.step().Character;
-
+            string word = "" + input.step().Character + input.step().Character + input.step().Character + input.step().Character;
             if (word == "null")
                 return new Token(input.Position, input.LineNumber, TokenType.Null, word);
             else if (word == "true")

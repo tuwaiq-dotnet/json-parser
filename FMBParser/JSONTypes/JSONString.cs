@@ -1,5 +1,3 @@
-
-
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -10,15 +8,14 @@
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
-
 namespace JSONParser
 {
-    public class JSONString : JSONType
-    {
-        public JSONString(string value)
-        {
-            this.value = value;
-            type = TokenType.String;
-        }
-    }
+	public class JSONString : JSONType
+	{
+		public JSONString(string value)
+		{
+			this.value = value;
+			type = TokenType.String;
+		}
+	}
 }

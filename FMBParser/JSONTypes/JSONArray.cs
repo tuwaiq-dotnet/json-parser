@@ -1,5 +1,5 @@
 /*
- * Tuwaiq .NET Bootcamp
+ * Tuwaiq .NET Bootcamp | JSONParser
  * 
  * Authors
  * 
@@ -8,8 +8,6 @@
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
-
-using System;
 using System.Collections.Generic;
 
 namespace JSONParser
@@ -37,7 +35,6 @@ namespace JSONParser
                 if (jt.type == TokenType.OpeningBracket)
                 {
                     list += jt.ToString();
-
                     if (i < value.Count - 1)
                         list += ", ";
                     else
@@ -47,7 +44,6 @@ namespace JSONParser
                 else if (jt.type == TokenType.OpeningCurlyBracket)
                 {
                     list += jt.ToString();
-
                     if (i < value.Count - 1)
                         list += ", ";
                     else
@@ -57,7 +53,6 @@ namespace JSONParser
                 else
                 {
                     list += jt.value;
-
                     if (i < value.Count - 1)
                         list += ", ";
                     else
@@ -68,6 +63,5 @@ namespace JSONParser
 
             return list;
         }
-
     }
 }

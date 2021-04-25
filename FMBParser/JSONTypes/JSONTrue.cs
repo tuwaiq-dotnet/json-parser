@@ -1,5 +1,3 @@
-
-
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -10,15 +8,14 @@
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
-
 namespace JSONParser
 {
-    public class JSONTrue : JSONType
-    {
-        public JSONTrue()
-        {
-            value = "true";
-            type = TokenType.True;
-        }
-    }
+	public class JSONTrue : JSONType
+	{
+		public JSONTrue()
+		{
+			value = "true";
+			type = TokenType.True;
+		}
+	}
 }

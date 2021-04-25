@@ -1,5 +1,3 @@
-
-
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -11,16 +9,14 @@
  *  Ibrahim Alobaysi
  */
 
-using System;
-
 namespace JSONParser
 {
-    public class JSONNull : JSONType
-    {
-        public JSONNull()
-        {
-            this.value = "null";
-            type = TokenType.Null;
-        }
-    }
+	public class JSONNull : JSONType
+	{
+		public JSONNull()
+		{
+			this.value = "null";
+			type = TokenType.Null;
+		}
+	}
 }

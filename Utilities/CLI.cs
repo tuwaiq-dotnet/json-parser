@@ -32,13 +32,11 @@ namespace JSONParser
             Console.WriteLine("The CLI provides commands to parse a JSON string into JSON object and generate JSON file");
             Console.WriteLine("These commands are defined internally\n\ttype 'help' to see this list \n\ttype 'quit' to exit the CLI");
             resetConsoleForegroundColor();
-
             string command;
             do
             {
                 Console.Write("\nPlease, type a command or 'help' to list see of commands\n> ");
                 command = Console.ReadLine();
-
                 if (command.ToLower().Equals("help"))
                 {
                     setConsoleForegroundColor(ConsoleColor.Blue);
@@ -98,8 +96,8 @@ namespace JSONParser
                             Console.WriteLine();
                             runJSONParserWithDefaultTokenizer(testInput);
                         }
-
-                    } while (command.ToLower() != "back" && command.ToLower() != "quit");
+                    }
+                    while (command.ToLower() != "back" && command.ToLower() != "quit");
                 }
                 else if (command.ToLower().Equals("2"))
                 {
@@ -116,7 +114,6 @@ namespace JSONParser
                         command = Console.ReadLine();
                         Console.WriteLine();
                         string testInput;
-
                         if (command.ToLower().Equals("1"))
                         {
                             testInput = @"{""younes"": 123, ""obj"": {""ids"": 123, ""age"": 25, ""isFire"": null}, ""id"": [""stromg"", 123, true, false, null, {""please"": ""wrok""}, [1,2, [1, 2, 3], 3,4]], ""obj2"": {""younes"": ""this actually works"", ""holy"": ""shit"", ""nowaythisis"": ""stupid"", ""arr"": [""somesd"", 12e-5, ""hjaja"", null]}, ""cool"": [1,2, [true, false], 3,4]}";
@@ -134,11 +131,11 @@ namespace JSONParser
                             Console.WriteLine();
                             runFMBParserWithDefaultTokenizer(testInput);
                         }
-                    } while (command.ToLower() != "back" && command.ToLower() != "quit");
+                    }
+                    while (command.ToLower() != "back" && command.ToLower() != "quit");
                 }
-
-            } while (command.ToLower() != "quit");
-
+            }
+            while (command.ToLower() != "quit");
             setConsoleForegroundColor(ConsoleColor.Green);
             Console.WriteLine("\nJSONParser CLI Exit Code: 0");
             setConsoleForegroundColor(ConsoleColor.Blue);
@@ -220,14 +217,7 @@ namespace JSONParser
         public static List<Token> tokenize(string source)
         {
             Input input = new Input(source);
-            Tokenizer t = new Tokenizer(input, new Tokenizable[]
-            {
-                    new StringHandler(),
-                    new WhitespaceHandler(),
-                    new NumberHandler(),
-                    new SingleWordHandler(),
-                    new SingleCharHandler()
-            });
+            Tokenizer t = new Tokenizer(input, new Tokenizable[] { new StringHandler(), new WhitespaceHandler(), new NumberHandler(), new SingleWordHandler(), new SingleCharHandler() });
             Token token = new Token();
             List<Token> tokens = new List<Token>();
             while (token != null)
@@ -240,7 +230,7 @@ namespace JSONParser
             if (!input.isConsumed())
             {
                 tokens = null;
-                throw new Exception($"Unexpected token encountered at Ln { input.LineNumber } Col { input.Position + 1}");
+                throw new Exception($"Unexpected token encountered at Ln {input.LineNumber} Col {input.Position + 1}");
             }
 
             return tokens;
@@ -263,8 +253,8 @@ namespace JSONParser
                 setConsoleForegroundColor(ConsoleColor.White);
                 Console.WriteLine($"{tkn.Type}");
             }
-            resetConsoleForegroundColor();
 
+            resetConsoleForegroundColor();
         }
 
         public static void toJSON(string json)

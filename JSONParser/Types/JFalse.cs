@@ -1,5 +1,3 @@
-using System;
-
 /*
  * Tuwaiq .NET Bootcamp
  * 
@@ -10,41 +8,50 @@ using System;
  *  Abdullah Albagshi
  *  Ibrahim Alobaysi
  */
+using System;
 
 namespace JSONParser
 {
-    public class JFalse : Value
-    {
-        Token token;
-        public JFalse(Token token)
-        {
-            this.token = token;
-        }
-        public override JFalse getFalse() { return this; }
-        public bool getValue() { return false; }
+	public class JFalse : Value
+	{
+		Token token;
+		public JFalse(Token token)
+		{
+			this.token = token;
+		}
 
+		public override JFalse getFalse()
+		{
+			return this;
+		}
 
-        public override JSONMemberType getType()
-        {
-            return JSONMemberType.False;
-        }
+		public bool getValue()
+		{
+			return false;
+		}
 
-        public override string ToString()
-        {
-            return "false";
-        }
-        public override string Indent(uint indentation = 0)
-        {
-            return this.ToString();
-        }
+		public override JSONMemberType getType()
+		{
+			return JSONMemberType.False;
+		}
 
-        public override Value ConsoleColorization(int indentation = 0)
-        {
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(this);
-            Console.ResetColor();
-            return this;
-        }
-    }
+		public override string ToString()
+		{
+			return "false";
+		}
+
+		public override string Indent(uint indentation = 0)
+		{
+			return this.ToString();
+		}
+
+		public override Value ConsoleColorization(int indentation = 0)
+		{
+			Console.ResetColor();
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.Write(this);
+			Console.ResetColor();
+			return this;
+		}
+	}
 }
