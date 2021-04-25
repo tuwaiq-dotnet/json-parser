@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://raw.githubusercontent.com/tuwaiq-dotnet/json-parser-team-yaai/main/logo.png" alt="Markdownify" width="200"></img>
+  <img src="https://raw.githubusercontent.com/tuwaiq-dotnet/json-parser-team-yaai/main/logo.png" alt="Markdownify" width="80"></img>
   <br>
   JSONParser
   <br>
