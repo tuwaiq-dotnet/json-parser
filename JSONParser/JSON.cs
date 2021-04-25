@@ -1,25 +1,22 @@
-using System.Collections.Generic;
-using System;
 /*
- * Tuwaiq .NET Bootcamp
+ * Tuwaiq .NET Bootcamp | JSON Parser
  * 
- * Authors
- * 
- *  Younes Alturkey
- *  Abdulrahman Bin Maneea
- *  Abdullah Albagshi
- *  Ibrahim Alobaysi
+ * Team Members
+ * Abdulrahman Bin Maneea (Team Lead)
+ * Younes Alturkey
+ * Abdullah Albagshi
+ * Ibrahim Alobaysi
  */
+using System;
 
 namespace JSONParser
 {
     public class JSON
     {
         private Value root;
-        private int elements;
         private Tokenizer tokenizer;
 
-        
+
         public Value Root { get { return root; } }
         public uint Elements { get { return root.Children; } }
 
@@ -50,7 +47,8 @@ namespace JSONParser
             return this.Root.Indent(0);
         }
 
-        public string Inspect(){
+        public string Inspect()
+        {
             return ""; // TODO: implement
         }
     }

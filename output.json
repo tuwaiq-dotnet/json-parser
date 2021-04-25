@@ -1,18 +1,1 @@
-{
-   "younes": 123,
-   "obj":    {
-      "ids": 123, 
-      "age": 25, 
-      "isFire": null
-   },
-   "id": ["stromg", 123, true, false, null,    {
-      "please": "wrok"
-   }, [1, 2, [1, 2, 3], 3, 4]],
-   "obj2":    {
-      "younes": "this actually works", 
-      "holy": "shit", 
-      "thisis": "stupid", 
-      "arr": ["somesd", 0.00012, "hjaja", null]
-   },
-   "cool": [1, 2, [true, false], 3, 4]
-}
+{"k1":"Value","k2":true,"k3":null,"k4":false,"k5":[1,55,-3,"meow",[null,{"younes":null,"abdul":[1,2,3]}],{"Abdullah":"Is Awesome!","And":18,"Wa":null}],"key6":{"key7":{"key8":1}}}

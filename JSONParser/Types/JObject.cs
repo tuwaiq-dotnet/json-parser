@@ -23,7 +23,7 @@ namespace JSONParser
                 uint sum = 0;
                 foreach (var item in Items)
                     sum += item.value.Children;
-                return sum + 1;
+                return sum;
             }
         }
 

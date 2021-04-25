@@ -15,11 +15,21 @@ namespace JSONParser
 {
     public class JArray : Value
     {
+        new public uint Children
+        {
+            get
+            {
+                uint sum = 0;
+                foreach (var item in Items)
+                    sum += item.Children;
+                return sum;
+            }
+        }
         public List<Value> Items = new List<Value>();
         public override string ToString() { return $"[{string.Join(",", Items)}]"; }
         public override JSONMemberType getType() { return JSONMemberType.Array; }
         public override JArray getArray() { return this; }
-        public Value getItem(int i){ return this.Items.Count > i? this.Items[i]: null; }
+        public Value getItem(int i) { return this.Items.Count > i ? this.Items[i] : null; }
         public override string Indent(uint indentation = 0)
         {
             string ret = "[\n";

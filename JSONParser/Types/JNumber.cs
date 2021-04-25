@@ -18,7 +18,6 @@ namespace JSONParser
         Token token;
         public JNumber(Token token)
         {
-            this.Children = 0;
             this.token = token;
         }
 
