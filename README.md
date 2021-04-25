@@ -21,6 +21,9 @@
 
 - Any valid string to JSON
   - Comfortably enter JSON string and let the cli generate JSON file
+- Independent Tokenizer component 
+- Independent Parser component
+- Built-in CLI app
 - Built-in Test Cases
   - Validate the accuracy of the tool with built-in tests
 - Pure [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
