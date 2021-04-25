@@ -1,5 +1,5 @@
 # ignore .gitignore file
-#.gitignore
+.gitignore
 
 # ignore .NET generated folder and files
 bin/
