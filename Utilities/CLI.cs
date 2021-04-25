@@ -174,7 +174,7 @@ namespace JSONParser
             Console.WriteLine("Outputing JSON object...\n");
             CLI.setConsoleForegroundColor(ConsoleColor.DarkYellow);
             Console.WriteLine("Stringifying JSON object...\n");
-            Console.WriteLine(jsonString);
+            // Console.WriteLine(jsonString);
             toJSON(jsonString);
             json.ConsoleColorization();
         }
