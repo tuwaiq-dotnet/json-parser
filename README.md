@@ -32,7 +32,9 @@
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com) and [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) installed.
+
+From your command line:
 
 ```bash
 # Clone this repository
