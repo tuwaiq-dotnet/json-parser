@@ -48,13 +48,13 @@ $ dotnet run
 
 Note: the parser is in alpha version as of now. Use with caution.
 
-## You may also like...
+## Related
 
 - [Tokenizer](https://github.com/tuwaiq-dotnet/tokenizer-app-team-yaai) - general-purpose C# tokenizer with 8 injectable handlers
 
 ## License
 
-MIT
+[MIT](https://github.com/tuwaiq-dotnet/json-parser/blob/main/LICENSE.md)
 
 ## Developers
 
