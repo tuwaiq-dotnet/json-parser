@@ -35,7 +35,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [.
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/tuwaiq-dotnet/json-parser-team-yaai.git
+$ git clone https://github.com/tuwaiq-dotnet/json-parser.git
 
 # Go into the repository
 $ cd json-parser
