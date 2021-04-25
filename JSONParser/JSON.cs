@@ -50,6 +50,11 @@ namespace JSONParser
             return this.Root.Indent(0);
         }
 
+        public JSON ConsoleColorization() {
+            this.Root.ConsoleColorization(0);
+            return this;
+        }
+
         public string Inspect(){
             return ""; // TODO: implement
         }

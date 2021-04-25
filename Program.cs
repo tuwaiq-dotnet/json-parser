@@ -26,7 +26,7 @@ namespace JSONParser
             1}}}");
 
             // System.Console.WriteLine(j.Indent());
-            Console.WriteLine(j.Root.getObject().getItem("k5").getArray().getItem(2));
+            j.ConsoleColorization();
 
         }
     }

@@ -26,6 +26,7 @@ namespace JSONParser
         public virtual JTrue getTrue() { return null; }
         public virtual JFalse getFalse() { return null; }
 
+        public abstract Value ConsoleColorization(int indentation);
         public abstract string Indent(uint indentation = 0);
     }
 
