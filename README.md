@@ -52,8 +52,6 @@ Note: the parser is in alpha version as of now. Use with caution.
 
 MIT
 
----
-
 ## Developers
 
 > GitHub [@AWManeea](https://github.com/AWManeea) &nbsp;&nbsp;
