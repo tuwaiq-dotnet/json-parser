@@ -54,11 +54,11 @@ MIT
 
 ---
 
-> GitHub [@AWManeea](https://github.com/AWManeea) &nbsp;&middot;&nbsp;
+> GitHub [@AWManeea](https://github.com/AWManeea) &nbsp;&nbsp;
 
-> GitHub [@Abdullah-albagshi](https://github.com/Abdullah-albagshi) &nbsp;&middot;&nbsp;
+> GitHub [@Abdullah-albagshi](https://github.com/Abdullah-albagshi) &nbsp;&nbsp;
 
-> GitHub [@ibra0022](https://github.com/ibra0022) &nbsp;&middot;&nbsp;
+> GitHub [@ibra0022](https://github.com/ibra0022) &nbsp;&nbsp;
 
 > GitHub [@younes-alturkey](https://github.com/younes-alturkey) &nbsp;&middot;&nbsp;
-> Website [younesalturkey.sa](https://younesalturkey.sa) &nbsp;&middot;&nbsp;
+> Website [younesalturkey.sa](https://younesalturkey.sa) &nbsp;&nbsp;
