@@ -155,7 +155,7 @@ namespace JSONParser
             List<Token> tokens = CLI.tokenize(input);
             CLI.printTokens(tokens);
             JSON json = new JSON(input);
-            string jsonString = json.ToString();
+            string jsonString = json.Indent();
             CLI.setConsoleForegroundColor(ConsoleColor.Blue);
             Console.WriteLine("\nStarting the Parsing Process");
             Console.WriteLine("Parsing tokens...");
@@ -176,6 +176,7 @@ namespace JSONParser
             Console.WriteLine("Stringifying JSON object...\n");
             Console.WriteLine(jsonString);
             toJSON(jsonString);
+            json.ConsoleColorization();
         }
 
         public static void runFMBParserWithDefaultTokenizer(string input)
