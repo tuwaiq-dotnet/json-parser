@@ -54,6 +54,8 @@ MIT
 
 ---
 
+## Developers
+
 > GitHub [@AWManeea](https://github.com/AWManeea) &nbsp;&nbsp;
 
 > GitHub [@Abdullah-albagshi](https://github.com/Abdullah-albagshi) &nbsp;&nbsp;
