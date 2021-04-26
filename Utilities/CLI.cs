@@ -35,7 +35,7 @@ namespace JSONParser
             string command;
             do
             {
-                Console.Write("\nPlease, type a command or 'help' to list see of commands\n> ");
+                Console.Write("\nPlease, type a command or 'help' to see list of commands\n> ");
                 command = Console.ReadLine();
                 if (command.ToLower().Equals("help"))
                 {
